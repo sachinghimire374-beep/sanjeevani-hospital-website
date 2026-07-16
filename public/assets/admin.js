@@ -68,7 +68,9 @@ async function tryLogin(){
   const errBox = document.getElementById('loginErr');
   errBox.style.display = 'none';
   try{
-    const out = await api('/api/auth/login', { method:'POST', body: JSON.stringify({username, password}) });
+    const res = await fetch('/api/auth/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username, password}) });
+    const out = await res.json().catch(()=>({}));
+    if (!res.ok) throw new Error(out.error || 'Login failed.');
     TOKEN = out.token;
     localStorage.setItem('sanjeevani_token', TOKEN);
     showShell();
