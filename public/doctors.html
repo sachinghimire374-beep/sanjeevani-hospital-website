@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Doctors — Sanjeevani Hospital Pokhara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap top-bar-inner">
+    <div class="tb-left">
+      <a class="tb-item" id="tbPhone" href="#" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+        <span id="tbPhoneText"></span>
+      </a>
+      <span class="tb-item" id="tbLocation" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="tbLocationText"></span>
+      </span>
+    </div>
+    <div class="tb-right">
+      <a class="tb-book" href="/appointments.html">Book Appointment</a>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="nav">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+      <div class="name">Sanjeevani Hospital Pokhara</div>
+    </a>
+    <nav class="links">
+      <a href="/">Home</a>
+      <a href="/departments.html">Departments</a>
+      <a href="/doctors.html">Doctors</a>
+      <div class="nav-item-dropdown">
+          <a href="/about.html" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu">
+            <a href="/about.html">About Us</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#chairman">Message from Chairman</a>
+            <a href="/about.html#ceo">Message from CEO</a>
+            <a href="/about.html#director">Message from Hospital Director</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#board">Board of Directors</a>
+            <a href="/about.html#committee">Management Committee</a>
+          </div>
+        </div>
+      <a href="/news.html">News &amp; Notices</a>
+      <div class="nav-item-dropdown" id="galleryNavDrop">
+          <a href="/gallery.html" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu" id="galleryNavMenu"></div>
+        </div>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-emergency" id="navEmergency" href="tel:+97700000000"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg> <span class="emg-text">Emergency</span></a>
+      <a class="btn btn-primary nav-book" href="/appointments.html">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobileMenu()">Home</a>
+    <a href="/departments.html" onclick="closeMobileMenu()">Departments</a>
+    <a href="/doctors.html" onclick="closeMobileMenu()">Doctors</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/about.html" onclick="closeMobileMenu()">About</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle About submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub">
+        <a href="/about.html#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
+        <a href="/about.html#ceo" onclick="closeMobileMenu()">Message from CEO</a>
+        <a href="/about.html#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
+        <a href="/about.html#board" onclick="closeMobileMenu()">Board of Directors</a>
+        <a href="/about.html#committee" onclick="closeMobileMenu()">Management Committee</a>
+      </div>
+    </div>
+    <a href="/news.html" onclick="closeMobileMenu()">News &amp; Notices</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/gallery.html" onclick="closeMobileMenu()">Gallery</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle Gallery submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub" id="galleryMobileSub"></div>
+    </div>
+    <a href="/appointments.html" onclick="closeMobileMenu()">Book Appointment</a>
+    <a href="/#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Our doctors</div>
+    <h1>The people looking after you</h1>
+    <p>Check each doctor's clinic days and hours, then book your slot straight from this page.</p>
+  </div>
+</div>
+
+<section style="padding-top:52px;">
+  <div class="wrap">
+    <div class="doc-filter-bar">
+      <div class="doc-search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="docSearchInput" type="text" placeholder="Search doctor by name…" oninput="filterDoctors()">
+      </div>
+      <div class="doc-dept-pills" id="docDeptPills"></div>
+    </div>
+    <p id="docNoResults" style="display:none;color:#8AA1A8;font-size:14px;margin-top:24px;">No doctors match your search.</p>
+    <div id="docFullGrid" class="doc-full-grid"></div>
+  </div>
+</section>
+
+<section id="appointment" style="padding-bottom:88px;">
+  <div class="wrap">
+    <div class="appt">
+      <div class="appt-left">
+        <div class="eyebrow">Book an appointment</div>
+        <h2>We'll confirm within the hour</h2>
+        <p>Fill in the form and our front desk will call you back to confirm your slot.</p>
+        <div class="phone">
+          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg></div>
+          <div><div id="emergencyPhoneDisplay" style="font-weight:700;"></div><div style="font-size:13px;color:#9FC1C9;">Emergency line — 24/7</div></div>
+        </div>
+      </div>
+      <div class="appt-form">
+        <form id="apptForm">
+          <div class="form-row">
+            <div class="field"><label>Full name</label><input required name="patient_name" type="text" placeholder="Your name"></div>
+            <div class="field"><label>Phone number</label><input required name="phone" type="text" placeholder="98XXXXXXXX"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Department</label><select name="department" id="apptDept"></select></div>
+            <div class="field"><label>Preferred doctor</label><select name="doctor" id="apptDoctor"><option>No preference</option></select></div>
+          </div>
+          <div id="docAvailHint" class="avail-hint" style="display:none;"></div>
+          <div class="form-row">
+            <div class="field"><label>Email address</label><input required name="email" type="email" placeholder="you@example.com"></div>
+            <div class="field"><label>Date</label><input id="appt_date" name="appt_date" type="date"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Time slot</label><select id="appt_time" name="appt_time"><option value="">— Select a doctor to see slots —</option></select></div>
+          </div>
+          <button class="btn btn-primary" type="submit">Request appointment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+          <div class="name">Sanjeevani Hospital<br>Pokhara Pvt. Ltd.</div>
+        </div>
+        <p id="footAddress" style="font-size:14px;opacity:0.75;max-width:280px;"></p>
+      </div>
+      <div><h4>Hospital</h4><ul><li><a href="/about.html">About us</a></li><li><a href="/departments.html">Departments</a></li><li><a href="/doctors.html">Doctors</a></li><li><a href="/news.html">News &amp; Notices</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="/appointments.html">Book appointment</a></li><li><a href="#">Visiting hours</a></li><li><a href="#">Insurance &amp; billing</a></li></ul></div>
+      <div><h4>Contact</h4><ul id="footContactList"></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sanjeevani Hospital Pokhara Pvt. Ltd. — Care for All.</span>
+      <span><a href="/admin/">Admin login</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="emg-float" id="emgFloat" href="tel:+97700000000"><span class="pulse"></span> Emergency</a>
+<div class="toast" id="toast"></div>
+
+<script src="/assets/shared.js"></script>
+<script>
+const ALL_DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+let _allDoctors = [];
+let _activeDept = 'All';
+
+function to12h(t){ const [h,m]=t.split(':').map(Number); const ap=h<12?'AM':'PM'; const dh=h===0?12:h>12?h-12:h; return `${dh}:${String(m).padStart(2,'0')} ${ap}`; }
+
+function docCardHTML(d){
+  const av = parseAvail(d.availability);
+  const days = schedDays(av);
+  let timeLabel = (av&&av.hours) ? av.hours : '';
+  if(!timeLabel && av?.schedule){
+    const vals = Object.values(av.schedule).filter(Boolean);
+    if(vals.length) timeLabel = `${to12h(vals[0].start)} – ${to12h(vals[0].end)}`;
+  }
+  const next = getNextAvailable(days);
+  const dayPills = ALL_DAYS.map(day=>`<span class="day-pill${days.includes(day)?' on':''}">${day.slice(0,3)}</span>`).join('');
+  const availBlock = days.length ? `
+    <div class="avail-block">
+      <div class="avail-block-title">Clinic Schedule</div>
+      <div class="day-pills-row">${dayPills}</div>
+      ${timeLabel ? `<div class="avail-hint-time" style="margin-top:8px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Consulting hours: <strong>${esc(timeLabel)}</strong></div>` : ''}
+      ${next ? `<div class="next-avail-badge">Next available: ${esc(next)}</div>` : ''}
+    </div>` : `<div class="avail-block avail-empty">Schedule not yet published — call to confirm.</div>`;
+  return `
+  <div class="doc-full-card">
+    <div class="doc-full-photo">${d.photo_url
+      ? `<img src="${esc(d.photo_url)}" alt="${esc(d.name)}">`
+      : `<div class="ring">${esc(initials(d.name))}</div>`}</div>
+    <div class="doc-full-info">
+      <div class="doc-dept" style="margin-bottom:4px;">${d.department ? esc(d.department) : '&nbsp;'}</div>
+      <h2>${esc(d.name)}</h2>
+      ${d.specialty ? `<div class="spec" style="margin-bottom:4px;">${esc(d.specialty)}</div>` : ''}
+      ${d.qualification ? `<div style="font-size:12.5px;color:#5B7682;margin-bottom:8px;">${esc(d.qualification)}${d.experience ? ` · ${esc(d.experience)}` : ''}</div>` : ''}
+      ${d.nmc_number ? `<div class="doc-nmc" style="margin-bottom:10px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> NMC ${esc(d.nmc_number)}</div>` : ''}
+      ${availBlock}
+      <button class="doc-full-btn" onclick="bookWithDoctor('${esc(d.name).replace(/'/g,"\\'")}','${esc(d.department||'').replace(/'/g,"\\'")}')">
+        Book Appointment
+      </button>
+    </div>
+  </div>`;
+}
+
+function filterDoctors(){
+  const q = (document.getElementById('docSearchInput').value || '').toLowerCase().trim();
+  const filtered = _allDoctors.filter(d => {
+    const deptMatch = _activeDept === 'All' || (d.department||d.specialty||'') === _activeDept;
+    const nameMatch = !q || d.name.toLowerCase().includes(q) || (d.specialty||'').toLowerCase().includes(q) || (d.department||'').toLowerCase().includes(q);
+    return deptMatch && nameMatch && d.status === 'Active';
+  });
+  const grid = document.getElementById('docFullGrid');
+  grid.innerHTML = filtered.map(docCardHTML).join('');
+  document.getElementById('docNoResults').style.display = filtered.length ? 'none' : 'block';
+}
+
+function setDept(dept, btn){
+  _activeDept = dept;
+  document.querySelectorAll('#docDeptPills .tab-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  filterDoctors();
+}
+
+async function loadDoctors(){
+  const data = await initShared();
+  if(!data) return;
+  _allDoctors = data.doctors;
+  _doctors = data.doctors;
+
+  document.getElementById('apptDept').innerHTML = data.departments.map(d=>`<option>${esc(d.name)}</option>`).join('');
+  document.getElementById('apptDoctor').innerHTML = '<option>No preference</option>' + data.doctors.filter(d=>d.status==='Active').map(d=>`<option>${esc(d.name)}</option>`).join('');
+  const emergPhone = (data.contact||{}).emergencyPhone||'';
+  const epEl = document.getElementById('emergencyPhoneDisplay');
+  if(epEl) epEl.textContent = emergPhone;
+
+  // Build department filter pills from actual doctors' departments
+  const depts = ['All', ...new Set(data.doctors.filter(d=>d.status==='Active').map(d=>d.department||d.specialty).filter(Boolean))];
+  const urlDept = new URLSearchParams(location.search).get('dept') || '';
+  if(urlDept && depts.includes(urlDept)) _activeDept = urlDept;
+
+  document.getElementById('docDeptPills').innerHTML = depts.map((dep,i) => {
+    const isActive = dep === _activeDept || (!_activeDept && i===0);
+    return `<button class="tab-pill${isActive?' active':''}" onclick="setDept('${dep.replace(/'/g,"\\'")}', this)">${esc(dep)}</button>`;
+  }).join('');
+
+  filterDoctors();
+  document.getElementById('apptDoctor').addEventListener('change', function(){ updateDocAvailHint(this.value); });
+}
+
+document.getElementById('apptForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const payload = Object.fromEntries(new FormData(e.target).entries());
+  try{
+    const res = await fetch('/api/appointments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    const out = await res.json();
+    if(!res.ok) throw new Error(out.error||'Could not submit request.');
+    showToast(out.message||'Appointment request sent.');
+    e.target.reset();
+  }catch(err){ showToast(err.message||'Something went wrong.'); }
+});
+
+loadDoctors();
+</script>
+</body>
+</html>

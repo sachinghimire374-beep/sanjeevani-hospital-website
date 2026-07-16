@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjeevani Hospital Pokhara — Care for All</title>
+<meta id="metaDesc" name="description" content="Sanjeevani Hospital Pokhara">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap top-bar-inner">
+    <div class="tb-left">
+      <a class="tb-item" id="tbPhone" href="#" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+        <span id="tbPhoneText"></span>
+      </a>
+      <span class="tb-item" id="tbLocation" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="tbLocationText"></span>
+      </span>
+    </div>
+    <div class="tb-right">
+      <a class="tb-book" href="/appointments.html">Book Appointment</a>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+      <div class="name">Sanjeevani Hospital Pokhara</div>
+    </div>
+    <nav class="links">
+      <a href="/departments.html" data-section="departments">Departments</a>
+      <a href="/doctors.html" data-section="doctors">Doctors</a>
+      <div class="nav-item-dropdown">
+          <a href="/about.html" data-section="about" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu">
+            <a href="/about.html">About Us</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#chairman">Message from Chairman</a>
+            <a href="/about.html#ceo">Message from CEO</a>
+            <a href="/about.html#director">Message from Hospital Director</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#board">Board of Directors</a>
+            <a href="/about.html#committee">Management Committee</a>
+          </div>
+        </div>
+      <a href="/news.html" data-section="news">News &amp; Notices</a>
+      <div class="nav-item-dropdown" id="galleryNavDrop">
+          <a href="/gallery.html" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu" id="galleryNavMenu"></div>
+        </div>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-emergency" id="navEmergency" href="tel:+97700000000"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg> <span class="emg-text">Emergency</span></a>
+      <a class="btn btn-primary nav-book" href="#appointment">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/departments.html" onclick="closeMobileMenu()">Departments</a>
+    <a href="/doctors.html" onclick="closeMobileMenu()">Doctors</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/about.html" onclick="closeMobileMenu()">About</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle About submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub">
+        <a href="/about.html#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
+        <a href="/about.html#ceo" onclick="closeMobileMenu()">Message from CEO</a>
+        <a href="/about.html#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
+        <a href="/about.html#board" onclick="closeMobileMenu()">Board of Directors</a>
+        <a href="/about.html#committee" onclick="closeMobileMenu()">Management Committee</a>
+      </div>
+    </div>
+    <a href="/news.html" onclick="closeMobileMenu()">News &amp; Notices</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/gallery.html" onclick="closeMobileMenu()">Gallery</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle Gallery submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub" id="galleryMobileSub"></div>
+    </div>
+    <a href="/appointments.html" onclick="closeMobileMenu()">Book Appointment</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge" id="heroKicker">Loading…</div>
+      <h1 id="heroTitle"></h1>
+      <p class="lead" id="heroLead"></p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#appointment">Book an appointment</a>
+        <a class="btn btn-outline" href="/departments.html">Our departments</a>
+      </div>
+      <div class="hero-search" id="heroSearch">
+        <div class="search-bar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="siteSearch" placeholder="Search departments, doctors, news…" autocomplete="off" oninput="doSearch(this.value)" onfocus="doSearch(this.value)" aria-label="Search site">
+          <button class="s-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear">✕</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+      <div class="hero-cred" id="heroStats"></div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="diamond d2"></div>
+      <div class="diamond d1"></div>
+      <div class="core">
+        <img src="/assets/logo.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band"><div class="stats-band-row wrap" id="statsBand"></div></div>
+
+<section id="departments" style="padding:96px 0 80px;">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div class="section-ruled-hd">
+        <h2>17 departments.<br>One hospital.</h2>
+      </div>
+      <a class="section-link" href="/departments.html">View all departments &rarr;</a>
+    </div>
+    <div class="dept-grid" id="deptGrid"></div>
+    <div class="dept-see-all">
+      <a class="btn btn-outline" href="/departments.html">See all departments</a>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="why-hd">
+      <h2>A few reasons people keep coming back</h2>
+    </div>
+    <div class="why-list" id="whyGrid"></div>
+  </div>
+</section>
+
+<section id="doctors" style="padding:96px 0;background:var(--paper-warm);">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div class="section-ruled-hd">
+        <h2>The specialists<br>behind your care</h2>
+      </div>
+      <a class="section-link" href="/doctors.html">View all doctors &rarr;</a>
+    </div>
+    <div class="doc-grid" id="docGrid"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-story">
+      <h2 id="aboutTitle" class="about-title-lg"></h2>
+      <p id="aboutBody1" class="about-body" style="margin-bottom:16px;"></p>
+      <p id="aboutBody2" class="about-body"></p>
+    </div>
+    <div class="about-cards">
+      <div class="about-mv-card"><h3>Our mission</h3><p id="missionText"></p></div>
+      <div class="about-mv-card"><h3>Our vision</h3><p id="visionText"></p></div>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:80px;">
+    <div class="section-head" style="border-top:1px solid var(--line);padding-top:56px;margin-bottom:44px;">
+      <h2 style="font-size:clamp(24px,2.8vw,36px);letter-spacing:-0.2px;">In their own words</h2>
+      <p style="color:#3C5560;font-size:15.5px;margin-top:10px;max-width:480px;">A message from the people who lead Sanjeevani Hospital.</p>
+    </div>
+    <div class="leadership-grid" id="leadershipGrid"></div>
+  </div>
+</section>
+
+<section id="news" style="padding:96px 0;background:var(--paper-warm);">
+  <div class="wrap">
+    <div class="section-head-row">
+      <div class="section-ruled-hd">
+        <h2>What's happening<br>at Sanjeevani</h2>
+      </div>
+      <a class="section-link" href="/news.html">All news &amp; notices &rarr;</a>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+  </div>
+</section>
+
+<section id="gallery-section">
+  <div class="wrap">
+    <div class="section-head"><div class="eyebrow">Gallery</div><h2>Inside Sanjeevani</h2></div>
+    <div class="tab-pills" id="galleryFilter" style="display:none;"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section id="appointment">
+  <div class="wrap">
+    <div class="appt">
+      <div class="appt-left">
+        <div class="eyebrow">Book an appointment</div>
+        <h2>We'll confirm within the hour</h2>
+        <p>Fill in the form and our front desk will call you back to confirm your slot.</p>
+        <div class="phone">
+          <div class="ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg></div>
+          <div><div id="emergencyPhoneDisplay" style="font-weight:700;"></div><div style="font-size:13px;color:#9FC1C9;">Emergency line — 24/7</div></div>
+        </div>
+      </div>
+      <div class="appt-form">
+        <form id="apptForm">
+          <div class="form-row">
+            <div class="field"><label>Full name</label><input required name="patient_name" type="text" placeholder="Your name"></div>
+            <div class="field"><label>Phone number</label><input required name="phone" type="text" placeholder="98XXXXXXXX"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Department</label><select name="department" id="apptDept"></select></div>
+            <div class="field"><label>Preferred doctor</label><select name="doctor_id" id="apptDoctor"><option value="">No preference</option></select></div>
+          </div>
+          <div id="docAvailHint" class="avail-hint" style="display:none;"></div>
+          <div class="form-row">
+            <div class="field"><label>Email address</label><input required name="email" type="email" placeholder="you@example.com"></div>
+            <div class="field"><label>Date</label><input id="appt_date" name="appt_date" type="date"></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Time slot</label><select id="appt_time" name="appt_time"><option value="">— Select a doctor to see slots —</option></select></div>
+          </div>
+          <button class="btn btn-primary" type="submit">Request appointment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:96px 0;background:#F8FAFC;">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:44px;">
+      <div class="eyebrow">Patient stories</div>
+      <h2 style="font-size:clamp(26px,3.2vw,40px);margin-top:12px;">What our patients say</h2>
+    </div>
+    <div id="testiGrid"></div>
+  </div>
+</section>
+
+<!-- Find Us / Map section — shown when admin sets a map embed URL -->
+<section id="findUs" style="display:none;padding-top:72px;padding-bottom:72px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">FIND US</div>
+      <h2>Our Location</h2>
+      <p id="mapAddress"></p>
+    </div>
+    <div class="location-card">
+      <div class="map-embed-wrap" id="mapEmbed"></div>
+      <div class="map-share-bar">
+        <span class="map-share-label">Share location:</span>
+        <a id="shareWhatsapp" class="map-share-btn whatsapp" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+        <a id="shareMessenger" class="map-share-btn messenger" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0zm1.191 14.963-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
+          Messenger
+        </a>
+        <a id="shareEmail" class="map-share-btn email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+          <div class="name">Sanjeevani Hospital<br>Pokhara Pvt. Ltd.</div>
+        </div>
+        <p id="footAddress" style="font-size:14px;opacity:0.75;max-width:280px;"></p>
+      </div>
+      <div><h4>Hospital</h4><ul><li><a href="#about">About us</a></li><li><a href="#departments">Departments</a></li><li><a href="#doctors">Doctors</a></li><li><a href="#news">News &amp; Notices</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="#appointment">Book appointment</a></li><li><a href="#">Visiting hours</a></li><li><a href="#">Insurance &amp; billing</a></li></ul></div>
+      <div><h4>Contact</h4><ul id="footContactList"></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sanjeevani Hospital Pokhara Pvt. Ltd. — Care for All.</span>
+      <span><a href="/admin/">Admin login</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="emg-float" id="emgFloat" href="tel:+97700000000"><span class="pulse"></span> Emergency</a>
+<div class="toast" id="toast"></div>
+
+<div id="noticeOverlay" class="notice-overlay" style="display:none;" onclick="if(event.target===this)closeNotice()">
+  <div class="notice-modal">
+    <button class="notice-close" onclick="closeNotice()" aria-label="Close">&#x2715;</button>
+    <div class="notice-cover" id="noticeCover" style="display:none;"><img id="noticeCoverImg" alt=""></div>
+    <div class="notice-date" id="noticeDate"></div>
+    <h2 class="notice-title" id="noticeTitle"></h2>
+    <p class="notice-excerpt" id="noticeExcerpt"></p>
+    <div class="notice-actions">
+      <a class="btn btn-primary" id="noticeReadMore" href="/news.html">Read more</a>
+      <button class="btn btn-outline" onclick="closeNotice()">Continue to website</button>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>

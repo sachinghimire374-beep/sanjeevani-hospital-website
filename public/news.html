@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News &amp; Notices — Sanjeevani Hospital Pokhara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap top-bar-inner">
+    <div class="tb-left">
+      <a class="tb-item" id="tbPhone" href="#" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+        <span id="tbPhoneText"></span>
+      </a>
+      <span class="tb-item" id="tbLocation" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="tbLocationText"></span>
+      </span>
+    </div>
+    <div class="tb-right">
+      <a class="tb-book" href="/appointments.html">Book Appointment</a>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="nav">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+      <div class="name">Sanjeevani Hospital Pokhara</div>
+    </a>
+    <nav class="links">
+      <a href="/">Home</a>
+      <a href="/departments.html">Departments</a>
+      <a href="/doctors.html">Doctors</a>
+      <div class="nav-item-dropdown">
+          <a href="/about.html" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu">
+            <a href="/about.html">About Us</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#chairman">Message from Chairman</a>
+            <a href="/about.html#ceo">Message from CEO</a>
+            <a href="/about.html#director">Message from Hospital Director</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#board">Board of Directors</a>
+            <a href="/about.html#committee">Management Committee</a>
+          </div>
+        </div>
+      <a href="/news.html">News &amp; Notices</a>
+      <div class="nav-item-dropdown" id="galleryNavDrop">
+          <a href="/gallery.html" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu" id="galleryNavMenu"></div>
+        </div>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-emergency" id="navEmergency" href="tel:+97700000000"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg> <span class="emg-text">Emergency</span></a>
+      <a class="btn btn-primary nav-book" href="/appointments.html">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobileMenu()">Home</a>
+    <a href="/departments.html" onclick="closeMobileMenu()">Departments</a>
+    <a href="/doctors.html" onclick="closeMobileMenu()">Doctors</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/about.html" onclick="closeMobileMenu()">About</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle About submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub">
+        <a href="/about.html#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
+        <a href="/about.html#ceo" onclick="closeMobileMenu()">Message from CEO</a>
+        <a href="/about.html#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
+        <a href="/about.html#board" onclick="closeMobileMenu()">Board of Directors</a>
+        <a href="/about.html#committee" onclick="closeMobileMenu()">Management Committee</a>
+      </div>
+    </div>
+    <a href="/news.html" onclick="closeMobileMenu()">News &amp; Notices</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/gallery.html" onclick="closeMobileMenu()">Gallery</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle Gallery submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub" id="galleryMobileSub"></div>
+    </div>
+    <a href="/appointments.html" onclick="closeMobileMenu()">Book Appointment</a>
+    <a href="/#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Stay informed</div>
+    <h1>News &amp; Notices</h1>
+    <p>Announcements, health tips, and updates from Sanjeevani Hospital Pokhara.</p>
+  </div>
+</div>
+
+<section style="padding-top:52px;padding-bottom:88px;">
+  <div class="wrap">
+    <div class="news-toolbar">
+      <div class="segment-bar" id="newsTabs">
+        <button class="seg-btn active" data-tab="news" onclick="switchNewsTab('news',this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a4 4 0 0 1-4 4z"/><path d="M18 14H10"/><path d="M15 18H10"/><path d="M10 6H18v4H10z"/></svg>
+          News
+        </button>
+        <button class="seg-btn" data-tab="notice" onclick="switchNewsTab('notice',this)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          Notices
+        </button>
+      </div>
+      <div class="news-sort-wrap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <select id="newsYear" onchange="onYearChange()">
+          <option value="">All years</option>
+        </select>
+        <select id="newsMonth" onchange="applySortAndRender()">
+          <option value="">All months</option>
+        </select>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+        <select id="newsSort" onchange="applySortAndRender()">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+        </select>
+      </div>
+    </div>
+    <div id="newsContent"></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+          <div class="name">Sanjeevani Hospital<br>Pokhara Pvt. Ltd.</div>
+        </div>
+        <p id="footAddress" style="font-size:14px;opacity:0.75;max-width:280px;"></p>
+      </div>
+      <div><h4>Hospital</h4><ul><li><a href="/about.html">About us</a></li><li><a href="/departments.html">Departments</a></li><li><a href="/doctors.html">Doctors</a></li><li><a href="/news.html">News &amp; Notices</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="/appointments.html">Book appointment</a></li><li><a href="#">Visiting hours</a></li><li><a href="#">Insurance &amp; billing</a></li></ul></div>
+      <div><h4>Contact</h4><ul id="footContactList"></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sanjeevani Hospital Pokhara Pvt. Ltd. — Care for All.</span>
+      <span><a href="/admin/">Admin login</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="emg-float" id="emgFloat" href="tel:+97700000000"><span class="pulse"></span> Emergency</a>
+<div class="toast" id="toast"></div>
+
+<!-- Detail modal -->
+<div id="newsDetailOverlay" class="nd-overlay" style="display:none;" onclick="if(event.target===this)closeDetail()">
+  <div class="nd-modal">
+    <button class="nd-close" onclick="closeDetail()" aria-label="Close">&#x2715;</button>
+    <div class="nd-cover" id="ndCover" style="display:none;"><img id="ndCoverImg" alt=""></div>
+    <div class="nd-inner">
+      <div class="nd-meta">
+        <span class="nd-type" id="ndType"></span>
+        <span class="nd-date" id="ndDate"></span>
+      </div>
+      <h2 class="nd-title" id="ndTitle"></h2>
+      <div class="nd-body" id="ndBody"></div>
+      <div id="ndAttach" style="display:none;margin-top:20px;">
+        <a class="news-attach" id="ndAttachLink" href="#" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span id="ndAttachLabel">Download attachment</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/shared.js"></script>
+<script>
+let _allNews = [];
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtDate(d){ return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); }
+
+function openDetail(id){
+  const n = _allNews.find(x=>x.id===id);
+  if(!n) return;
+  const cover = document.getElementById('ndCover');
+  if(n.cover_image){ document.getElementById('ndCoverImg').src = n.cover_image; cover.style.display='block'; }
+  else { cover.style.display='none'; }
+  document.getElementById('ndType').textContent = n.post_type==='notice' ? 'Notice' : 'News';
+  document.getElementById('ndType').className = 'nd-type ' + (n.post_type==='notice' ? 'amber' : 'teal');
+  document.getElementById('ndDate').textContent = fmtDate(n.created_at);
+  document.getElementById('ndTitle').textContent = n.title || '';
+  const body = (n.body||'').replace(/<[^>]*>/g,'');
+  document.getElementById('ndBody').textContent = body;
+  const attachEl = document.getElementById('ndAttach');
+  if(n.attachment_url){
+    document.getElementById('ndAttachLink').href = n.attachment_url;
+    document.getElementById('ndAttachLabel').textContent = n.attachment_url.endsWith('.pdf') ? 'Download PDF' : 'View attachment';
+    attachEl.style.display = 'block';
+  } else { attachEl.style.display = 'none'; }
+  document.getElementById('newsDetailOverlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  history.replaceState(null,'',`?id=${id}`);
+}
+
+function closeDetail(){
+  document.getElementById('newsDetailOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+  history.replaceState(null,'',location.pathname);
+}
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function populateDateFilters(){
+  const years = [...new Set(_allNews.map(n => new Date(n.created_at).getFullYear()))].sort((a,b)=>b-a);
+  const yearSel = document.getElementById('newsYear');
+  yearSel.innerHTML = '<option value="">All years</option>' + years.map(y=>`<option value="${y}">${y}</option>`).join('');
+}
+
+function onYearChange(){
+  const year = document.getElementById('newsYear').value;
+  const monthSel = document.getElementById('newsMonth');
+  if(!year){
+    monthSel.innerHTML = '<option value="">All months</option>';
+  } else {
+    const months = [...new Set(
+      _allNews
+        .filter(n => new Date(n.created_at).getFullYear() === parseInt(year))
+        .map(n => new Date(n.created_at).getMonth())
+    )].sort((a,b)=>a-b);
+    monthSel.innerHTML = '<option value="">All months</option>' + months.map(m=>`<option value="${m}">${MONTHS[m]}</option>`).join('');
+  }
+  applySortAndRender();
+}
+
+function renderNewsTab(type){
+  const sortVal = document.getElementById('newsSort')?.value || 'newest';
+  const year = document.getElementById('newsYear')?.value;
+  const month = document.getElementById('newsMonth')?.value;
+  const items = _allNews
+    .filter(n => (n.post_type || 'news') === type)
+    .filter(n => {
+      const d = new Date(n.created_at);
+      if(year && d.getFullYear() !== parseInt(year)) return false;
+      if(month !== '' && month != null && d.getMonth() !== parseInt(month)) return false;
+      return true;
+    })
+    .sort((a,b)=>{
+      const da = new Date(a.created_at), db = new Date(b.created_at);
+      return sortVal === 'oldest' ? da - db : db - da;
+    });
+  const el = document.getElementById('newsContent');
+  if(!items.length){
+    const hasFilters = year || (month !== '' && month != null);
+    el.innerHTML = `<p style="color:#8AA1A8;font-size:14px;">${hasFilters ? 'No results for the selected period.' : `No ${type==='notice'?'notices':'news articles'} published yet.`}</p>`;
+    return;
+  }
+  if(type === 'news'){
+    el.innerHTML = `<div class="news-grid">${items.map(n=>`
+      <div class="news-card" onclick="openDetail(${n.id})" style="cursor:pointer;">
+        <div class="cover">${n.cover_image?`<img src="${esc(n.cover_image)}" alt="${esc(n.title)}">`:''}</div>
+        <div class="body">
+          <div class="date">${fmtDate(n.created_at)}</div>
+          <h3>${esc(n.title)}</h3>
+          <span class="nd-read-more">Read full article →</span>
+        </div>
+      </div>`).join('')}</div>`;
+  } else {
+    el.innerHTML = `<div class="notice-list">${items.map(n=>`
+      <div class="notice-card" onclick="openDetail(${n.id})" style="cursor:pointer;">
+        <div class="notice-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="notice-body">
+          <div class="date">${fmtDate(n.created_at)}</div>
+          <h3>${esc(n.title)}</h3>
+          ${n.body?`<div class="excerpt">${esc(n.body.replace(/<[^>]*>/g,''))}</div>`:''}
+          <span class="nd-read-more" style="margin-top:6px;display:inline-block;">View full notice →</span>
+        </div>
+      </div>`).join('')}</div>`;
+  }
+}
+
+function currentTab(){
+  const active = document.querySelector('#newsTabs .seg-btn.active');
+  return active ? active.dataset.tab : 'news';
+}
+
+function applySortAndRender(){
+  renderNewsTab(currentTab());
+}
+
+function switchNewsTab(type, btn){
+  document.querySelectorAll('#newsTabs .seg-btn').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  renderNewsTab(type);
+}
+
+async function loadNews(){
+  await initShared();
+  const res = await fetch('/api/news?status=published');
+  _allNews = await res.json();
+  populateDateFilters();
+  const params = new URLSearchParams(location.search);
+  const targetId = params.get('id') ? parseInt(params.get('id')) : null;
+  const target = targetId ? _allNews.find(x=>x.id===targetId) : null;
+  if(target){
+    const type = target.post_type || 'news';
+    const tabBtn = document.querySelector(`#newsTabs .seg-btn[data-tab="${type}"]`);
+    if(tabBtn) switchNewsTab(type, tabBtn);
+    else renderNewsTab('news');
+    setTimeout(()=>openDetail(targetId), 100);
+  } else {
+    renderNewsTab('news');
+  }
+}
+loadNews();
+</script>
+</body>
+</html>

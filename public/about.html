@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — Sanjeevani Hospital Pokhara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="wrap top-bar-inner">
+    <div class="tb-left">
+      <a class="tb-item" id="tbPhone" href="#" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg>
+        <span id="tbPhoneText"></span>
+      </a>
+      <span class="tb-item" id="tbLocation" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="tbLocationText"></span>
+      </span>
+    </div>
+    <div class="tb-right">
+      <a class="tb-book" href="/appointments.html">Book Appointment</a>
+    </div>
+  </div>
+</div>
+<header>
+  <div class="nav">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+      <div class="name">Sanjeevani Hospital Pokhara</div>
+    </a>
+    <nav class="links">
+      <a href="/">Home</a>
+      <a href="/departments.html">Departments</a>
+      <a href="/doctors.html">Doctors</a>
+      <div class="nav-item-dropdown">
+          <a href="/about.html" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu">
+            <a href="/about.html">About Us</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#chairman">Message from Chairman</a>
+            <a href="/about.html#ceo">Message from CEO</a>
+            <a href="/about.html#director">Message from Hospital Director</a>
+            <div class="drop-divider"></div>
+            <a href="/about.html#board">Board of Directors</a>
+            <a href="/about.html#committee">Management Committee</a>
+          </div>
+        </div>
+      <a href="/news.html">News &amp; Notices</a>
+      <div class="nav-item-dropdown" id="galleryNavDrop">
+          <a href="/gallery.html" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <div class="nav-drop-menu" id="galleryNavMenu"></div>
+        </div>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-emergency" id="navEmergency" href="tel:+97700000000"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.28h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.72 16z"/></svg> <span class="emg-text">Emergency</span></a>
+      <a class="btn btn-primary nav-book" href="/appointments.html">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/" onclick="closeMobileMenu()">Home</a>
+    <a href="/departments.html" onclick="closeMobileMenu()">Departments</a>
+    <a href="/doctors.html" onclick="closeMobileMenu()">Doctors</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/about.html" onclick="closeMobileMenu()">About</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle About submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub">
+        <a href="/about.html#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
+        <a href="/about.html#ceo" onclick="closeMobileMenu()">Message from CEO</a>
+        <a href="/about.html#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
+        <a href="/about.html#board" onclick="closeMobileMenu()">Board of Directors</a>
+        <a href="/about.html#committee" onclick="closeMobileMenu()">Management Committee</a>
+      </div>
+    </div>
+    <a href="/news.html" onclick="closeMobileMenu()">News &amp; Notices</a>
+    <div class="mm-group">
+      <div class="mm-group-hd">
+        <a href="/gallery.html" onclick="closeMobileMenu()">Gallery</a>
+        <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle Gallery submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      </div>
+      <div class="mm-sub" id="galleryMobileSub"></div>
+    </div>
+    <a href="/appointments.html" onclick="closeMobileMenu()">Book Appointment</a>
+    <a href="/#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Our story</div>
+    <h1 id="aboutTitle">About Sanjeevani Hospital</h1>
+    <p id="aboutLead"></p>
+  </div>
+</div>
+
+<!-- Hospital image -->
+<div id="hospImgSection" style="display:none;">
+  <img id="hospImg" src="" alt="Sanjeevani Hospital Pokhara" class="hosp-building-img">
+</div>
+
+<!-- Story & Mission/Vision -->
+<section>
+  <div class="wrap about-grid">
+    <div class="about-story">
+      <p id="aboutBody1" class="about-body"></p>
+      <p id="aboutBody2" class="about-body"></p>
+      <p id="aboutHistory" class="about-history"></p>
+    </div>
+    <div class="about-cards">
+      <div class="dept-card"><h3>Our Mission</h3><p id="missionText" style="margin-top:8px;color:#3C5560;"></p></div>
+      <div class="dept-card"><h3>Our Vision</h3><p id="visionText" style="margin-top:8px;color:#3C5560;"></p></div>
+      <div class="dept-card"><h3>Our Values</h3><p id="valuesText" style="margin-top:8px;color:#3C5560;"></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Leadership messages -->
+<section id="leadership" style="background:var(--paper-warm);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Leadership</div>
+      <h2>Messages from our leadership</h2>
+    </div>
+    <div class="leader-accordion" id="leadershipGrid"></div>
+  </div>
+</section>
+
+<!-- Board of Directors -->
+<section id="board">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Governance</div>
+      <h2>Board of Directors</h2>
+    </div>
+    <div class="member-grid" id="boardGrid">
+      <p style="color:#8AA1A8;font-size:14px;">Board of Directors information can be added from the admin panel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Management Committee -->
+<section id="committee" style="background:var(--paper-warm);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Leadership</div>
+      <h2>Management Committee</h2>
+    </div>
+    <div class="member-grid" id="committeeGrid">
+      <p style="color:#8AA1A8;font-size:14px;">Management Committee information can be added from the admin panel.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="/assets/logo.png" alt="Sanjeevani Hospital logo">
+          <div class="name">Sanjeevani Hospital<br>Pokhara Pvt. Ltd.</div>
+        </div>
+        <p id="footAddress" style="font-size:14px;opacity:0.75;max-width:280px;"></p>
+      </div>
+      <div><h4>Hospital</h4><ul><li><a href="/about.html">About us</a></li><li><a href="/departments.html">Departments</a></li><li><a href="/doctors.html">Doctors</a></li><li><a href="/news.html">News &amp; Notices</a></li></ul></div>
+      <div><h4>Patients</h4><ul><li><a href="/appointments.html">Book appointment</a></li><li><a href="#">Visiting hours</a></li><li><a href="#">Insurance &amp; billing</a></li></ul></div>
+      <div><h4>Contact</h4><ul id="footContactList"></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sanjeevani Hospital Pokhara Pvt. Ltd. — Care for All.</span>
+      <span><a href="/admin/">Admin login</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="emg-float" id="emgFloat" href="tel:+97700000000"><span class="pulse"></span> Emergency</a>
+<div class="toast" id="toast"></div>
+
+<script src="/assets/shared.js"></script>
+<script>
+async function loadAbout(){
+  const data = await initShared();
+  if(!data) return;
+  const a = data.about || {};
+
+  document.getElementById('aboutTitle').textContent = a.title || 'About Sanjeevani Hospital';
+  document.getElementById('aboutLead').textContent = a.body1 ? a.body1.slice(0,160)+'…' : '';
+  document.getElementById('aboutBody1').textContent = a.body1 || '';
+  document.getElementById('aboutBody2').textContent = a.body2 || '';
+  if(a.history) document.getElementById('aboutHistory').textContent = a.history;
+  document.getElementById('missionText').textContent = a.mission || '';
+  document.getElementById('visionText').textContent = a.vision || '';
+  if(a.values) document.getElementById('valuesText').textContent = a.values;
+
+  if(a.hospital_image){
+    document.getElementById('hospImg').src = a.hospital_image;
+    document.getElementById('hospImgSection').style.display = 'block';
+  }
+
+  const leaders = [
+    { id:'chairman', role:'Chairman', name: a.chairman_name, photo: a.chairman_photo, msg: a.chairman_message },
+    { id:'ceo', role:'Chief Executive Officer (CEO)', name: a.ceo_name, photo: a.ceo_photo, msg: a.ceo_message },
+    { id:'director', role:'Hospital Director', name: a.director_name, photo: a.director_photo, msg: a.director_message },
+    { id:'md', role:'Managing Director', name: a.md_name, photo: a.md_photo, msg: a.md_message },
+  ].filter(l=>l.msg);
+
+  const initials = n => (n||'').split(' ').map(w=>w[0]).filter(Boolean).slice(0,2).join('').toUpperCase()||'?';
+  document.getElementById('leadershipGrid').innerHTML = leaders.length
+    ? leaders.map((l,i)=>{
+        const photoHtml = l.photo
+          ? `<img src="${esc(l.photo)}" alt="${esc(l.name||l.role)}">`
+          : `<div class="initials">${esc(initials(l.name||l.role))}</div>`;
+        return `
+        <div class="acc-item" id="acc${i}" data-anchor="${l.id}">
+          <div class="acc-header" onclick="toggleAcc(${i})">
+            <div class="acc-photo">${photoHtml}</div>
+            <div class="acc-meta">
+              <div class="acc-role">${esc(l.role)}</div>
+              <div class="acc-name">${esc(l.name||'')}</div>
+            </div>
+            <svg class="acc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="acc-body">
+            <div class="acc-inner">
+              <div class="acc-big-photo">${photoHtml}</div>
+              <blockquote class="acc-quote">"${esc(l.msg)}"</blockquote>
+            </div>
+          </div>
+        </div>`; }).join('')
+    : '<p style="color:#8AA1A8;font-size:14px;">Leadership messages will appear here once added in the admin panel.</p>';
+
+  // Open accordion item matching URL hash (e.g. #ceo, #md)
+  const hash = location.hash.slice(1);
+  if(hash && ['ceo','md','chairman','director'].includes(hash)){
+    const target = document.querySelector(`.acc-item[data-anchor="${hash}"]`);
+    if(target){
+      const idx = parseInt(target.id.replace('acc',''));
+      toggleAcc(idx);
+      setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),120);
+    }
+  } else if(leaders.length) toggleAcc(0);
+
+  // Board of Directors
+  const board = a.board || [];
+  const boardGrid = document.getElementById('boardGrid');
+  if(board.length){
+    boardGrid.innerHTML = board.map(m=>memberCardHTML(m)).join('');
+  }
+
+  // Management Committee
+  const committee = a.committee || [];
+  const committeeGrid = document.getElementById('committeeGrid');
+  if(committee.length){
+    committeeGrid.innerHTML = committee.map(m=>memberCardHTML(m)).join('');
+  }
+
+  function memberCardHTML(m){
+    const ini = (m.name||'').split(' ').map(w=>w[0]).filter(Boolean).slice(0,2).join('').toUpperCase()||'?';
+    const photoEl = m.photo
+      ? `<img src="${esc(m.photo)}" alt="${esc(m.name||'')}">`
+      : `<div class="member-initials">${ini}</div>`;
+    return `<div class="member-card">
+      <div class="member-photo">${photoEl}</div>
+      <div class="member-name">${esc(m.name||'')}</div>
+      <div class="member-role">${esc(m.role||'')}</div>
+      ${m.bio ? `<p class="member-bio">${esc(m.bio)}</p>` : ''}
+    </div>`;
+  }
+
+}
+
+function toggleAcc(i){
+  const item = document.getElementById('acc'+i);
+  if(!item) return;
+  const isOpen = item.classList.contains('open');
+  // close all
+  document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+loadAbout();
+</script>
+</body>
+</html>
