@@ -708,16 +708,28 @@ app.delete('/api/appointments/:id', requireAuth, (req, res) => {
 
 app.get('/api/debug-net-test', async (req, res) => {
   const net = require('net');
-  const testPort = port => new Promise(resolve => {
+  const dns = require('dns');
+  const describe = e => e ? (e.message || e.code || (e.errors ? JSON.stringify(e.errors.map(x=>({code:x.code,message:x.message,address:x.address}))) : String(e))) : 'unknown';
+  const testConn = (host, port) => new Promise(resolve => {
     const start = Date.now();
-    const s = net.createConnection(port, 'smtp.gmail.com');
+    let s;
+    try { s = net.createConnection(port, host); } catch(e) { return resolve({ host, port, result: 'THROW: ' + describe(e), ms: Date.now() - start }); }
     s.setTimeout(6000);
-    s.on('connect', () => { resolve({ port, result: 'CONNECTED', ms: Date.now() - start }); s.end(); });
-    s.on('timeout', () => { resolve({ port, result: 'TIMEOUT', ms: Date.now() - start }); s.destroy(); });
-    s.on('error', e => resolve({ port, result: 'ERROR: ' + e.message, ms: Date.now() - start }));
+    s.on('connect', () => { resolve({ host, port, result: 'CONNECTED', ms: Date.now() - start }); s.end(); });
+    s.on('timeout', () => { resolve({ host, port, result: 'TIMEOUT', ms: Date.now() - start }); s.destroy(); });
+    s.on('error', e => resolve({ host, port, result: 'ERROR: ' + describe(e), ms: Date.now() - start }));
   });
-  const results = await Promise.all([testPort(587), testPort(465), testPort(25)]);
-  res.json({ results });
+
+  let ipv4 = null, ipv4Err = null;
+  try { ipv4 = (await dns.promises.resolve4('smtp.gmail.com'))[0]; } catch(e) { ipv4Err = describe(e); }
+
+  const tests = [
+    testConn('smtp.gmail.com', 587),
+    testConn('smtp.gmail.com', 465),
+  ];
+  if (ipv4) { tests.push(testConn(ipv4, 587)); tests.push(testConn(ipv4, 465)); }
+  const results = await Promise.all(tests);
+  res.json({ ipv4, ipv4Err, results });
 });
 
 app.get('/api/smtp-status', requireAuth, (req, res) => {
