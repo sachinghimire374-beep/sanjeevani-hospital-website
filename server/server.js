@@ -21,7 +21,8 @@ function createTransporter() {
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
     port: parseInt(process.env.SMTP_PORT || '587'),
     secure: false,
-    auth: { user, pass }
+    auth: { user, pass },
+    family: 4 // Render's network lacks outbound IPv6 — force IPv4 at the socket layer
   });
 }
 
