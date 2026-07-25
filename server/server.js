@@ -1,4 +1,5 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+require('dns').setDefaultResultOrder('ipv4first'); // Render's network lacks outbound IPv6, so SMTP connects fail without this
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
