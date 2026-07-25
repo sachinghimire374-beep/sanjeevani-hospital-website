@@ -706,6 +706,20 @@ app.delete('/api/appointments/:id', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+app.get('/api/debug-net-test', async (req, res) => {
+  const net = require('net');
+  const testPort = port => new Promise(resolve => {
+    const start = Date.now();
+    const s = net.createConnection(port, 'smtp.gmail.com');
+    s.setTimeout(6000);
+    s.on('connect', () => { resolve({ port, result: 'CONNECTED', ms: Date.now() - start }); s.end(); });
+    s.on('timeout', () => { resolve({ port, result: 'TIMEOUT', ms: Date.now() - start }); s.destroy(); });
+    s.on('error', e => resolve({ port, result: 'ERROR: ' + e.message, ms: Date.now() - start }));
+  });
+  const results = await Promise.all([testPort(587), testPort(465), testPort(25)]);
+  res.json({ results });
+});
+
 app.get('/api/smtp-status', requireAuth, (req, res) => {
   const configured = !!(process.env.SMTP_USER && process.env.SMTP_PASS &&
     process.env.SMTP_USER !== 'your@gmail.com');
