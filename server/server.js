@@ -12,17 +12,30 @@ const nodemailer = require('nodemailer');
 // ---------------------------------------------------------------------------
 // Mailer
 // ---------------------------------------------------------------------------
-function createTransporter() {
+async function createTransporter() {
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
   const placeholders = ['your@gmail.com', 'your_app_password_here', ''];
   if (!user || !pass || placeholders.includes(user) || placeholders.includes(pass)) return null;
+
+  const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+  // Nodemailer resolves both A and AAAA records itself and picks one at random,
+  // ignoring Node's DNS settings — Render has no outbound IPv6 route, so a random
+  // pick regularly fails. Resolve to a literal IPv4 address ourselves to force it.
+  let connectHost = smtpHost;
+  try {
+    const addresses = await require('dns').promises.resolve4(smtpHost);
+    if (addresses && addresses.length) connectHost = addresses[0];
+  } catch (e) {
+    console.log(`IPv4 resolution for ${smtpHost} failed, falling back to hostname:`, e.message);
+  }
+
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    host: connectHost,
     port: parseInt(process.env.SMTP_PORT || '587'),
     secure: false,
     auth: { user, pass },
-    family: 4 // Render's network lacks outbound IPv6 — force IPv4 at the socket layer
+    tls: { servername: smtpHost } // keep TLS cert validation matching the real hostname
   });
 }
 
@@ -161,7 +174,7 @@ function rejectionEmailHtml(a) {
 }
 
 async function sendMail(to, subject, html, label) {
-  const transporter = createTransporter();
+  const transporter = await createTransporter();
   if (!transporter) { console.log(`SMTP not configured — skipping ${label}.`); return; }
   try {
     await transporter.sendMail({
@@ -358,7 +371,7 @@ app.post('/api/auth/forgot-password', async (req, res) => {
   const expiry = Date.now() + 60 * 60 * 1000; // 1 hour
   db.prepare('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE id=?').run(token, expiry, user.id);
 
-  const transporter = createTransporter();
+  const transporter = await createTransporter();
   if (!transporter) {
     return res.status(503).json({ error: 'Email service (SMTP) is not configured. Please set SMTP credentials in .env to use password reset.' });
   }
