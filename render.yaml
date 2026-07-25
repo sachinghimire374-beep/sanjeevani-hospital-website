@@ -2,19 +2,13 @@ services:
   - type: web
     name: sanjeevani-hospital-site
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install
     startCommand: npm start
     autoDeploy: true
-    disk:
-      name: hospital-data
-      mountPath: /var/data
-      sizeGB: 2
     envVars:
       - key: NODE_ENV
         value: production
-      - key: DATA_DIR
-        value: /var/data
       - key: JWT_SECRET
         generateValue: true
       - key: ADMIN_USERNAME

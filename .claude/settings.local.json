@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/a/Downloads/hospital-site/public/assets/icons)",
+      "Bash(node -e ' *)"
+    ],
+    "additionalDirectories": [
+      "/Users/a/Downloads/hospital-site/public/assets"
+    ]
+  }
+}
