@@ -1,5 +1,4 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
-require('dns').setDefaultResultOrder('ipv4first'); // Render's network lacks outbound IPv6, so SMTP connects fail without this
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -7,36 +6,30 @@ const fs = require('fs');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
-const nodemailer = require('nodemailer');
 
 // ---------------------------------------------------------------------------
-// Mailer
+// Mailer — Resend HTTP API (Render blocks outbound SMTP ports on its free
+// tier, so raw SMTP/nodemailer can never connect; Resend sends over HTTPS).
 // ---------------------------------------------------------------------------
-async function createTransporter() {
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const placeholders = ['your@gmail.com', 'your_app_password_here', ''];
-  if (!user || !pass || placeholders.includes(user) || placeholders.includes(pass)) return null;
+async function sendViaResend(to, subject, html) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const placeholders = ['', 're_your_api_key_here'];
+  if (!apiKey || placeholders.includes(apiKey)) return { skipped: true };
 
-  const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
-  // Nodemailer resolves both A and AAAA records itself and picks one at random,
-  // ignoring Node's DNS settings — Render has no outbound IPv6 route, so a random
-  // pick regularly fails. Resolve to a literal IPv4 address ourselves to force it.
-  let connectHost = smtpHost;
-  try {
-    const addresses = await require('dns').promises.resolve4(smtpHost);
-    if (addresses && addresses.length) connectHost = addresses[0];
-  } catch (e) {
-    console.log(`IPv4 resolution for ${smtpHost} failed, falling back to hostname:`, e.message);
-  }
-
-  return nodemailer.createTransport({
-    host: connectHost,
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: false,
-    auth: { user, pass },
-    tls: { servername: smtpHost } // keep TLS cert validation matching the real hostname
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: process.env.EMAIL_FROM || 'Sanjeevani Hospital <onboarding@resend.dev>',
+      to, subject, html
+    })
   });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.message || `Resend responded with ${res.status}`);
+  return data;
 }
 
 function confirmationEmailHtml(a) {
@@ -81,7 +74,7 @@ function confirmationEmailHtml(a) {
       <p class="footer-note">
         Sanjeevani Hospital Pokhara · Pokhara-12, Hospital Chowk, Nepal<br>
         This is an automated message — please do not reply directly to this email.
-        For queries contact <a href="mailto:${process.env.SMTP_USER}">${process.env.SMTP_USER}</a>
+        For queries contact <a href="mailto:${process.env.ADMIN_EMAIL}">${process.env.ADMIN_EMAIL}</a>
       </p>
     </div>
   </div>
@@ -131,7 +124,7 @@ function bookingReceivedEmailHtml(a) {
       <p class="footer-note">
         Sanjeevani Hospital Pokhara · Pokhara-12, Hospital Chowk, Nepal<br>
         This is an automated message — please do not reply directly to this email.
-        For queries contact <a href="mailto:${process.env.SMTP_USER}">${process.env.SMTP_USER}</a>
+        For queries contact <a href="mailto:${process.env.ADMIN_EMAIL}">${process.env.ADMIN_EMAIL}</a>
       </p>
     </div>
   </div>
@@ -166,7 +159,7 @@ function rejectionEmailHtml(a) {
       <p class="footer-note">
         Sanjeevani Hospital Pokhara · Pokhara-12, Hospital Chowk, Nepal<br>
         This is an automated message — please do not reply directly to this email.
-        For queries contact <a href="mailto:${process.env.SMTP_USER}">${process.env.SMTP_USER}</a>
+        For queries contact <a href="mailto:${process.env.ADMIN_EMAIL}">${process.env.ADMIN_EMAIL}</a>
       </p>
     </div>
   </div>
@@ -174,13 +167,9 @@ function rejectionEmailHtml(a) {
 }
 
 async function sendMail(to, subject, html, label) {
-  const transporter = await createTransporter();
-  if (!transporter) { console.log(`SMTP not configured — skipping ${label}.`); return; }
   try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || `"Sanjeevani Hospital" <${process.env.SMTP_USER}>`,
-      to, subject, html
-    });
+    const result = await sendViaResend(to, subject, html);
+    if (result.skipped) { console.log(`Resend not configured — skipping ${label}.`); return; }
     console.log(`${label} sent to ${to}`);
   } catch (err) {
     console.error(`${label} send error:`, err.message);
@@ -371,25 +360,18 @@ app.post('/api/auth/forgot-password', async (req, res) => {
   const expiry = Date.now() + 60 * 60 * 1000; // 1 hour
   db.prepare('UPDATE users SET reset_token=?, reset_token_expiry=? WHERE id=?').run(token, expiry, user.id);
 
-  const transporter = await createTransporter();
-  if (!transporter) {
-    return res.status(503).json({ error: 'Email service (SMTP) is not configured. Please set SMTP credentials in .env to use password reset.' });
-  }
-
   const proto = req.headers['x-forwarded-proto'] || req.protocol;
   const resetUrl = `${proto}://${req.get('host')}/admin/?token=${token}`;
 
   try {
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM || `"Sanjeevani Hospital" <${process.env.SMTP_USER}>`,
-      to: user.email,
-      subject: 'Admin Password Reset — Sanjeevani Hospital CMS',
-      html: resetEmailHtml(resetUrl)
-    });
+    const result = await sendViaResend(user.email, 'Admin Password Reset — Sanjeevani Hospital CMS', resetEmailHtml(resetUrl));
+    if (result.skipped) {
+      return res.status(503).json({ error: 'Email service is not configured. Please set RESEND_API_KEY to use password reset.' });
+    }
     res.json({ ok: true, message: 'Reset link sent! Check your email inbox.' });
   } catch (err) {
     console.error('Reset email error:', err.message);
-    res.status(500).json({ error: 'Failed to send reset email. Check SMTP settings.' });
+    res.status(500).json({ error: 'Failed to send reset email. Check email service settings.' });
   }
 });
 
@@ -706,36 +688,10 @@ app.delete('/api/appointments/:id', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
-app.get('/api/debug-net-test', async (req, res) => {
-  const net = require('net');
-  const dns = require('dns');
-  const describe = e => e ? (e.message || e.code || (e.errors ? JSON.stringify(e.errors.map(x=>({code:x.code,message:x.message,address:x.address}))) : String(e))) : 'unknown';
-  const testConn = (host, port) => new Promise(resolve => {
-    const start = Date.now();
-    let s;
-    try { s = net.createConnection(port, host); } catch(e) { return resolve({ host, port, result: 'THROW: ' + describe(e), ms: Date.now() - start }); }
-    s.setTimeout(6000);
-    s.on('connect', () => { resolve({ host, port, result: 'CONNECTED', ms: Date.now() - start }); s.end(); });
-    s.on('timeout', () => { resolve({ host, port, result: 'TIMEOUT', ms: Date.now() - start }); s.destroy(); });
-    s.on('error', e => resolve({ host, port, result: 'ERROR: ' + describe(e), ms: Date.now() - start }));
-  });
-
-  let ipv4 = null, ipv4Err = null;
-  try { ipv4 = (await dns.promises.resolve4('smtp.gmail.com'))[0]; } catch(e) { ipv4Err = describe(e); }
-
-  const tests = [
-    testConn('smtp.gmail.com', 587),
-    testConn('smtp.gmail.com', 465),
-  ];
-  if (ipv4) { tests.push(testConn(ipv4, 587)); tests.push(testConn(ipv4, 465)); }
-  const results = await Promise.all(tests);
-  res.json({ ipv4, ipv4Err, results });
-});
-
 app.get('/api/smtp-status', requireAuth, (req, res) => {
-  const configured = !!(process.env.SMTP_USER && process.env.SMTP_PASS &&
-    process.env.SMTP_USER !== 'your@gmail.com');
-  res.json({ configured, from: configured ? (process.env.SMTP_FROM || process.env.SMTP_USER) : null });
+  const apiKey = process.env.RESEND_API_KEY;
+  const configured = !!(apiKey && apiKey !== 're_your_api_key_here');
+  res.json({ configured, from: configured ? (process.env.EMAIL_FROM || 'onboarding@resend.dev') : null });
 });
 
 // ---------------------------------------------------------------------------
