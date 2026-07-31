@@ -1,4 +1,4 @@
-const Database = require('better-sqlite3');
+const Database = require('./sqlite-compat');
 const bcrypt = require('bcryptjs');
 const path = require('path');
 const fs = require('fs');
@@ -291,8 +291,8 @@ function ensureNews() {
       updated_at: '2026-06-29 07:53:33'
     }
   ];
-  const insert = db.prepare('INSERT INTO news (title, slug, body, cover_image, status, post_type, created_at, updated_at) VALUES (@title, @slug, @body, @cover_image, @status, @post_type, @created_at, @updated_at)');
-  rows.forEach(r => insert.run(r));
+  const insert = db.prepare('INSERT INTO news (title, slug, body, cover_image, status, post_type, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+  rows.forEach(r => insert.run(r.title, r.slug, r.body, r.cover_image, r.status, r.post_type, r.created_at, r.updated_at));
 }
 
 function ensureGallery() {

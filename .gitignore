@@ -1,5 +1,6 @@
 node_modules/
 .env
+.wrangler/
 server/data.sqlite
 server/data.sqlite-journal
 server/data.sqlite-wal
