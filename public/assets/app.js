@@ -56,17 +56,17 @@ function buildGalleryNav(cats){
   const mobileSub = document.getElementById('galleryMobileSub');
   if(menu && cats.length){
     const SUB_ARROW = `<svg style="margin-left:auto;flex-shrink:0" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
-    let html = `<a href="/gallery.html">All Photos</a><div class="drop-divider"></div>`;
+    let html = `<a href="/gallery">All Photos</a><div class="drop-divider"></div>`;
     cats.forEach(cat => {
       const slug = encodeURIComponent(cat.name);
       if(cat.children && cat.children.length){
-        html += `<div class="nav-drop-item-parent"><a href="/gallery.html?cat=${slug}">${esc(cat.name)} ${SUB_ARROW}</a><div class="nav-drop-sub">`;
+        html += `<div class="nav-drop-item-parent"><a href="/gallery?cat=${slug}">${esc(cat.name)} ${SUB_ARROW}</a><div class="nav-drop-sub">`;
         cat.children.forEach(child => {
-          html += `<a href="/gallery.html?cat=${encodeURIComponent(cat.name+' > '+child.name)}">${esc(child.name)}</a>`;
+          html += `<a href="/gallery?cat=${encodeURIComponent(cat.name+' > '+child.name)}">${esc(child.name)}</a>`;
         });
         html += `</div></div>`;
       } else {
-        html += `<a href="/gallery.html?cat=${slug}">${esc(cat.name)}</a>`;
+        html += `<a href="/gallery?cat=${slug}">${esc(cat.name)}</a>`;
       }
     });
     menu.innerHTML = html;
@@ -74,12 +74,12 @@ function buildGalleryNav(cats){
   if(mobileSub){
     let mHtml = '';
     cats.forEach(cat => {
-      mHtml += `<a href="/gallery.html?cat=${encodeURIComponent(cat.name)}" onclick="closeMobileMenu()">${esc(cat.name)}</a>`;
+      mHtml += `<a href="/gallery?cat=${encodeURIComponent(cat.name)}" onclick="closeMobileMenu()">${esc(cat.name)}</a>`;
       (cat.children||[]).forEach(child => {
-        mHtml += `<a href="/gallery.html?cat=${encodeURIComponent(cat.name+' > '+child.name)}" onclick="closeMobileMenu()" class="mm-sub-child">↳ ${esc(child.name)}</a>`;
+        mHtml += `<a href="/gallery?cat=${encodeURIComponent(cat.name+' > '+child.name)}" onclick="closeMobileMenu()" class="mm-sub-child">↳ ${esc(child.name)}</a>`;
       });
     });
-    mobileSub.innerHTML = mHtml || '<a href="/gallery.html" onclick="closeMobileMenu()">All Photos</a>';
+    mobileSub.innerHTML = mHtml || '<a href="/gallery" onclick="closeMobileMenu()">All Photos</a>';
   }
 }
 function initScrollSpy(){
@@ -325,7 +325,7 @@ async function loadSite(){
   const newsSection = document.getElementById('news');
   if(data.news && data.news.length){
     document.getElementById('newsGrid').innerHTML = data.news.map(n=>`
-      <div class="news-card" onclick="window.location.href='/news.html?id=${n.id}'" style="cursor:pointer;">
+      <div class="news-card" onclick="window.location.href='/news?id=${n.id}'" style="cursor:pointer;">
         <div class="cover">${n.cover_image ? `<img src="${esc(n.cover_image)}" alt="${esc(n.title)}">` : ''}</div>
         <div class="body">
           <div class="date">${esc(fmtDate(n.created_at))}</div>
@@ -455,7 +455,7 @@ function showNoticePopup(item){
   document.getElementById('noticeTitle').textContent = item.title || '';
   document.getElementById('noticeDate').textContent = fmtDate(item.created_at);
   document.getElementById('noticeExcerpt').textContent = excerpt.length > 160 ? excerpt.slice(0,157)+'…' : excerpt;
-  document.getElementById('noticeReadMore').href = `/news.html?id=${item.id}`;
+  document.getElementById('noticeReadMore').href = `/news?id=${item.id}`;
   document.getElementById('noticeOverlay').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -637,7 +637,7 @@ function doSearch(q){
 
   if(news.length){
     html+=`<div class="sr-section"><div class="sr-label">News &amp; Notices</div>`;
-    html+=news.map(x=>`<div class="sr-item" onclick="clearSearch();window.location.href='/news.html?id=${x.id}'">
+    html+=news.map(x=>`<div class="sr-item" onclick="clearSearch();window.location.href='/news?id=${x.id}'">
       <div class="sr-thumb">${x.cover_image?`<img src="${esc(x.cover_image)}" alt="">`:'📰'}</div>
       <div><div class="sr-title">${esc(x.title)}</div><div class="sr-sub">${esc((x.created_at||'').slice(0,10))}</div></div>
     </div>`).join('');

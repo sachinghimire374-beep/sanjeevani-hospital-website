@@ -25,7 +25,7 @@
       </span>
     </div>
     <div class="tb-right">
-      <a class="tb-book" href="/appointments.html">Book Appointment</a>
+      <a class="tb-book" href="/appointments">Book Appointment</a>
     </div>
   </div>
 </div>
@@ -36,24 +36,24 @@
       <div class="name">Sanjeevani Hospital Pokhara</div>
     </div>
     <nav class="links">
-      <a href="/departments.html" data-section="departments">Departments</a>
-      <a href="/doctors.html" data-section="doctors">Doctors</a>
+      <a href="/departments" data-section="departments">Departments</a>
+      <a href="/doctors" data-section="doctors">Doctors</a>
       <div class="nav-item-dropdown">
-          <a href="/about.html" data-section="about" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <a href="/about" data-section="about" class="nav-drop-trigger">About <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
           <div class="nav-drop-menu">
-            <a href="/about.html">About Us</a>
+            <a href="/about">About Us</a>
             <div class="drop-divider"></div>
-            <a href="/about.html#chairman">Message from Chairman</a>
-            <a href="/about.html#ceo">Message from CEO</a>
-            <a href="/about.html#director">Message from Hospital Director</a>
+            <a href="/about#chairman">Message from Chairman</a>
+            <a href="/about#ceo">Message from CEO</a>
+            <a href="/about#director">Message from Hospital Director</a>
             <div class="drop-divider"></div>
-            <a href="/about.html#board">Board of Directors</a>
-            <a href="/about.html#committee">Management Committee</a>
+            <a href="/about#board">Board of Directors</a>
+            <a href="/about#committee">Management Committee</a>
           </div>
         </div>
-      <a href="/news.html" data-section="news">News &amp; Notices</a>
+      <a href="/news" data-section="news">News &amp; Notices</a>
       <div class="nav-item-dropdown" id="galleryNavDrop">
-          <a href="/gallery.html" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <a href="/gallery" class="nav-drop-trigger">Gallery <svg class="drop-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
           <div class="nav-drop-menu" id="galleryNavMenu"></div>
         </div>
       <a href="#contact">Contact</a>
@@ -67,30 +67,30 @@
     </div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/departments.html" onclick="closeMobileMenu()">Departments</a>
-    <a href="/doctors.html" onclick="closeMobileMenu()">Doctors</a>
+    <a href="/departments" onclick="closeMobileMenu()">Departments</a>
+    <a href="/doctors" onclick="closeMobileMenu()">Doctors</a>
     <div class="mm-group">
       <div class="mm-group-hd">
-        <a href="/about.html" onclick="closeMobileMenu()">About</a>
+        <a href="/about" onclick="closeMobileMenu()">About</a>
         <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle About submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
       </div>
       <div class="mm-sub">
-        <a href="/about.html#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
-        <a href="/about.html#ceo" onclick="closeMobileMenu()">Message from CEO</a>
-        <a href="/about.html#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
-        <a href="/about.html#board" onclick="closeMobileMenu()">Board of Directors</a>
-        <a href="/about.html#committee" onclick="closeMobileMenu()">Management Committee</a>
+        <a href="/about#chairman" onclick="closeMobileMenu()">Message from Chairman</a>
+        <a href="/about#ceo" onclick="closeMobileMenu()">Message from CEO</a>
+        <a href="/about#director" onclick="closeMobileMenu()">Message from Hospital Director</a>
+        <a href="/about#board" onclick="closeMobileMenu()">Board of Directors</a>
+        <a href="/about#committee" onclick="closeMobileMenu()">Management Committee</a>
       </div>
     </div>
-    <a href="/news.html" onclick="closeMobileMenu()">News &amp; Notices</a>
+    <a href="/news" onclick="closeMobileMenu()">News &amp; Notices</a>
     <div class="mm-group">
       <div class="mm-group-hd">
-        <a href="/gallery.html" onclick="closeMobileMenu()">Gallery</a>
+        <a href="/gallery" onclick="closeMobileMenu()">Gallery</a>
         <button class="mm-toggle" onclick="toggleMM(this)" aria-label="Toggle Gallery submenu"><svg class="mm-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
       </div>
       <div class="mm-sub" id="galleryMobileSub"></div>
     </div>
-    <a href="/appointments.html" onclick="closeMobileMenu()">Book Appointment</a>
+    <a href="/appointments" onclick="closeMobileMenu()">Book Appointment</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
 </header>
@@ -103,7 +103,7 @@
       <p class="lead" id="heroLead"></p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#appointment">Book an appointment</a>
-        <a class="btn btn-outline" href="/departments.html">Our departments</a>
+        <a class="btn btn-outline" href="/departments">Our departments</a>
       </div>
       <div class="hero-search" id="heroSearch">
         <div class="search-bar">
@@ -133,11 +133,11 @@
       <div class="section-ruled-hd">
         <h2>17 departments.<br>One hospital.</h2>
       </div>
-      <a class="section-link" href="/departments.html">View all departments &rarr;</a>
+      <a class="section-link" href="/departments">View all departments &rarr;</a>
     </div>
     <div class="dept-grid" id="deptGrid"></div>
     <div class="dept-see-all">
-      <a class="btn btn-outline" href="/departments.html">See all departments</a>
+      <a class="btn btn-outline" href="/departments">See all departments</a>
     </div>
   </div>
 </section>
@@ -157,7 +157,7 @@
       <div class="section-ruled-hd">
         <h2>The specialists<br>behind your care</h2>
       </div>
-      <a class="section-link" href="/doctors.html">View all doctors &rarr;</a>
+      <a class="section-link" href="/doctors">View all doctors &rarr;</a>
     </div>
     <div class="doc-grid" id="docGrid"></div>
   </div>
@@ -190,7 +190,7 @@
       <div class="section-ruled-hd">
         <h2>What's happening<br>at Sanjeevani</h2>
       </div>
-      <a class="section-link" href="/news.html">All news &amp; notices &rarr;</a>
+      <a class="section-link" href="/news">All news &amp; notices &rarr;</a>
     </div>
     <div class="news-grid" id="newsGrid"></div>
   </div>
@@ -313,7 +313,7 @@
     <h2 class="notice-title" id="noticeTitle"></h2>
     <p class="notice-excerpt" id="noticeExcerpt"></p>
     <div class="notice-actions">
-      <a class="btn btn-primary" id="noticeReadMore" href="/news.html">Read more</a>
+      <a class="btn btn-primary" id="noticeReadMore" href="/news">Read more</a>
       <button class="btn btn-outline" onclick="closeNotice()">Continue to website</button>
     </div>
   </div>

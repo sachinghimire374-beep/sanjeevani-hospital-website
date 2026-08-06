@@ -340,26 +340,26 @@ function buildGalleryNav(cats){
   // Desktop dropdown
   if(menu && cats.length){
     const SUB_ARROW = `<svg style="margin-left:auto;flex-shrink:0" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
-    let html = `<a href="/gallery.html">All Photos</a><div class="drop-divider"></div>`;
+    let html = `<a href="/gallery">All Photos</a><div class="drop-divider"></div>`;
     cats.forEach(cat => {
       const slug = encodeURIComponent(cat.name);
       if(cat.children && cat.children.length){
         html += `<div class="nav-drop-item-parent">
-          <a href="/gallery.html?cat=${slug}">${esc(cat.name)} ${SUB_ARROW}</a>
+          <a href="/gallery?cat=${slug}">${esc(cat.name)} ${SUB_ARROW}</a>
           <div class="nav-drop-sub">`;
         cat.children.forEach(child => {
           const childSlug = encodeURIComponent(cat.name + ' > ' + child.name);
-          html += `<a href="/gallery.html?cat=${childSlug}">${esc(child.name)}</a>`;
+          html += `<a href="/gallery?cat=${childSlug}">${esc(child.name)}</a>`;
           if(child.children && child.children.length){
             child.children.forEach(gc => {
               const gcSlug = encodeURIComponent(cat.name + ' > ' + child.name + ' > ' + gc.name);
-              html += `<a href="/gallery.html?cat=${gcSlug}" style="padding-left:22px">↳ ${esc(gc.name)}</a>`;
+              html += `<a href="/gallery?cat=${gcSlug}" style="padding-left:22px">↳ ${esc(gc.name)}</a>`;
             });
           }
         });
         html += `</div></div>`;
       } else {
-        html += `<a href="/gallery.html?cat=${slug}">${esc(cat.name)}</a>`;
+        html += `<a href="/gallery?cat=${slug}">${esc(cat.name)}</a>`;
       }
     });
     menu.innerHTML = html;
@@ -370,13 +370,13 @@ function buildGalleryNav(cats){
     let mHtml = '';
     cats.forEach(cat => {
       const slug = encodeURIComponent(cat.name);
-      mHtml += `<a href="/gallery.html?cat=${slug}" onclick="closeMobileMenu()">${esc(cat.name)}</a>`;
+      mHtml += `<a href="/gallery?cat=${slug}" onclick="closeMobileMenu()">${esc(cat.name)}</a>`;
       (cat.children||[]).forEach(child => {
         const childSlug = encodeURIComponent(cat.name + ' > ' + child.name);
-        mHtml += `<a href="/gallery.html?cat=${childSlug}" onclick="closeMobileMenu()" class="mm-sub-child">↳ ${esc(child.name)}</a>`;
+        mHtml += `<a href="/gallery?cat=${childSlug}" onclick="closeMobileMenu()" class="mm-sub-child">↳ ${esc(child.name)}</a>`;
       });
     });
-    mobileSub.innerHTML = mHtml || '<a href="/gallery.html" onclick="closeMobileMenu()">All Photos</a>';
+    mobileSub.innerHTML = mHtml || '<a href="/gallery" onclick="closeMobileMenu()">All Photos</a>';
   }
 }
 

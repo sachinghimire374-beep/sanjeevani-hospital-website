@@ -218,7 +218,33 @@ app.use(express.json({ limit: '2mb' }));
 // ---------------------------------------------------------------------------
 // Static frontend (public website + admin panel)
 // ---------------------------------------------------------------------------
+
+// Clean, extensionless URLs (e.g. /departments instead of /departments.html).
+// Old .html links (bookmarks, search engines) get a permanent redirect so
+// nothing breaks; the site's own pages now link straight to the clean URL.
+const CLEAN_ROUTES = {
+  'index.html': '/',
+  'about.html': '/about',
+  'news.html': '/news',
+  'gallery.html': '/gallery',
+  'departments.html': '/departments',
+  'appointments.html': '/appointments',
+  'doctors.html': '/doctors'
+};
+app.use((req, res, next) => {
+  if (req.path === '/admin/index.html') return res.redirect(301, '/admin');
+  const clean = CLEAN_ROUTES[req.path.slice(1)];
+  if (!clean) return next();
+  const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  res.redirect(301, clean + query);
+});
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+Object.entries(CLEAN_ROUTES).forEach(([file, route]) => {
+  if (route === '/') return; // already served by express.static's default index.html
+  app.get(route, (req, res) => res.sendFile(path.join(__dirname, '..', 'public', file)));
+});
 
 // ---------------------------------------------------------------------------
 // FILE UPLOADS
