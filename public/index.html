@@ -12,6 +12,25 @@
 </head>
 <body>
 
+<div id="pageLoader" class="page-loader" aria-hidden="true">
+  <img src="/assets/logo.png" alt="" class="page-loader-logo">
+  <div class="page-loader-bar"></div>
+</div>
+<script>
+(function(){
+  var MIN_VISIBLE = 350, shownAt = Date.now();
+  function hideLoader(){
+    var el = document.getElementById('pageLoader');
+    if (!el) return;
+    var wait = Math.max(0, MIN_VISIBLE - (Date.now() - shownAt));
+    setTimeout(function(){ el.classList.add('hide'); }, wait);
+  }
+  if (document.readyState === 'complete') hideLoader();
+  else window.addEventListener('load', hideLoader);
+  setTimeout(hideLoader, 4000);
+})();
+</script>
+
 <div class="top-bar">
   <div class="wrap top-bar-inner">
     <div class="tb-left">
