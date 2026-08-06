@@ -1,5 +1,6 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
 const express = require('express');
+const compression = require('compression');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
@@ -212,6 +213,7 @@ const { signToken, requireAuth } = require('./auth');
 initDb();
 
 const app = express();
+app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 
@@ -239,6 +241,10 @@ app.use((req, res, next) => {
   res.redirect(301, clean + query);
 });
 
+// Long cache lifetime for /assets (CSS/JS carry a ?v= cache-buster, images
+// change rarely) — kept separate from the public/ mount below so HTML pages
+// (which have no cache-buster and change often) aren't cached the same way.
+app.use('/assets', express.static(path.join(__dirname, '..', 'public', 'assets'), { maxAge: '30d' }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 Object.entries(CLEAN_ROUTES).forEach(([file, route]) => {
@@ -253,7 +259,7 @@ const uploadDir = process.env.DATA_DIR
   ? path.join(process.env.DATA_DIR, 'uploads')
   : path.join(__dirname, '..', 'public', 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-app.use('/uploads', express.static(uploadDir));
+app.use('/uploads', express.static(uploadDir, { maxAge: '30d' }));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
