@@ -7,6 +7,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
+const sharp = require('sharp');
 
 // ---------------------------------------------------------------------------
 // Mailer — Resend HTTP API (Render blocks outbound SMTP ports on its free
@@ -278,8 +279,27 @@ const upload = multer({
   }
 });
 
-app.post('/api/upload', requireAuth, upload.single('file'), (req, res) => {
+app.post('/api/upload', requireAuth, upload.single('file'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'No file uploaded.' });
+
+  // Downscale + recompress photos on the way in — phone-camera uploads are
+  // routinely several MB at 3000px+, far larger than anywhere they're shown
+  // on the site, and were the biggest single cause of slow page loads.
+  const filePath = path.join(uploadDir, req.file.filename);
+  const ext = path.extname(req.file.filename).toLowerCase();
+  if (['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) {
+    try {
+      const tmpPath = filePath + '.opt';
+      const pipeline = sharp(filePath).rotate().resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true });
+      if (ext === '.png') await pipeline.png({ quality: 80, effort: 8 }).toFile(tmpPath);
+      else if (ext === '.webp') await pipeline.webp({ quality: 78 }).toFile(tmpPath);
+      else await pipeline.jpeg({ quality: 78, mozjpeg: true }).toFile(tmpPath);
+      fs.renameSync(tmpPath, filePath);
+    } catch (err) {
+      console.error('Image optimization failed, keeping original upload:', err.message);
+    }
+  }
+
   res.json({ url: '/uploads/' + req.file.filename });
 });
 app.use((err, req, res, next) => {
