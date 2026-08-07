@@ -7,7 +7,7 @@ const fs = require('fs');
 const crypto = require('crypto');
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
-const sharp = require('sharp');
+const { Jimp } = require('jimp');
 
 // ---------------------------------------------------------------------------
 // Mailer — Resend HTTP API (Render blocks outbound SMTP ports on its free
@@ -285,16 +285,21 @@ app.post('/api/upload', requireAuth, upload.single('file'), async (req, res) => 
   // Downscale + recompress photos on the way in — phone-camera uploads are
   // routinely several MB at 3000px+, far larger than anywhere they're shown
   // on the site, and were the biggest single cause of slow page loads.
+  // Pure-JS (jimp) rather than a native-binary library (e.g. sharp) — this
+  // host's shared hosting environment can't run native Node addons (same
+  // reason better-sqlite3 was replaced with node-sqlite3-wasm).
   const filePath = path.join(uploadDir, req.file.filename);
   const ext = path.extname(req.file.filename).toLowerCase();
-  if (['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) {
+  if (['.jpg', '.jpeg', '.png'].includes(ext)) {
     try {
-      const tmpPath = filePath + '.opt';
-      const pipeline = sharp(filePath).rotate().resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true });
-      if (ext === '.png') await pipeline.png({ quality: 80, effort: 8 }).toFile(tmpPath);
-      else if (ext === '.webp') await pipeline.webp({ quality: 78 }).toFile(tmpPath);
-      else await pipeline.jpeg({ quality: 78, mozjpeg: true }).toFile(tmpPath);
-      fs.renameSync(tmpPath, filePath);
+      const img = await Jimp.read(filePath);
+      if (img.width > 1600 || img.height > 1600) {
+        if (img.width >= img.height) img.resize({ w: 1600 });
+        else img.resize({ h: 1600 });
+      }
+      const mime = ext === '.png' ? 'image/png' : 'image/jpeg';
+      const buf = await img.getBuffer(mime, ext === '.png' ? {} : { quality: 78 });
+      fs.writeFileSync(filePath, buf);
     } catch (err) {
       console.error('Image optimization failed, keeping original upload:', err.message);
     }

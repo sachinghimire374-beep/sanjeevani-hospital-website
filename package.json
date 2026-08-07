@@ -12,10 +12,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "jimp": "^1.6.1",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.2.0",
-    "node-sqlite3-wasm": "^0.8.60",
-    "sharp": "^0.35.3"
+    "node-sqlite3-wasm": "^0.8.60"
   },
   "engines": {
     "node": "22.x"
